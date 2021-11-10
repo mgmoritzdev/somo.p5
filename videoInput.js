@@ -1,11 +1,14 @@
 class VideoInput {
-  constructor(w, h) {
+  constructor() {
     this.capture = createCapture(VIDEO);
-    this.capture.size(w, h)
+    this.capture.size(
+      SomoConfig.captureWidth,
+      SomoConfig.captureHeight
+    )
     this.capture.hide()
   }
 
   draw() {
-    image(this.capture, 0, 0, 640, 480);
+    image(this.capture, 0, 0, SomoConfig.width, SomoConfig.height);
   }
 }
