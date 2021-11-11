@@ -7,6 +7,6 @@ class SomoConfig {
 
 class ComputedConfig {
   static nSectors = SomoConfig.captureWidth * SomoConfig.captureHeight
-  static sectorWidth = SomoConfig.width / float(SomoConfig.width)
-  static sectorHeight = SomoConfig.height / float(SomoConfig.height)
+  static sectorWidth = SomoConfig.width / SomoConfig.captureWidth
+  static sectorHeight = SomoConfig.height / SomoConfig.captureHeight
 }
