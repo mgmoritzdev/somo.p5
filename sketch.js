@@ -1,15 +1,15 @@
 let videoInput
-let sectors
 let kmeans
 let body
 let randomColor1
 let randomColor2
+let analyser
 
 
 function setup() {
   createCanvas(SomoConfig.width, SomoConfig.height)
   videoInput = new VideoInput()
-  sectors = Sector.initialize()
+  analyser = new DefaultAnalyser()
   kmeans = new KMeans()
   updateRandomColors()
 }
@@ -18,7 +18,7 @@ function draw() {
   // capture.loadPixels()
   // outputVideo.draw()
   videoInput.draw()
-  // sectors.forEach(s => s.drawBorder())
+  analyser.drawSectors()
 
   // TODO: sample points, remove me
 
