@@ -2,12 +2,16 @@ let videoInput
 let sectors
 let kmeans
 let body
+let randomColor1
+let randomColor2
+
 
 function setup() {
   createCanvas(SomoConfig.width, SomoConfig.height)
   videoInput = new VideoInput()
   sectors = Sector.initialize()
   kmeans = new KMeans()
+  updateRandomColors()
 }
 
 function draw() {
@@ -22,6 +26,20 @@ function draw() {
   kmeans.run(points)
   body = new Body(points)
   body.draw()
+}
+
+function updateRandomColors() {
+  const skipRed = 33
+  randomColor1 = RandomColor.create({
+    minHue: skipRed, minAlpha: 100
+  })
+
+  randomColor2 = RandomColor.create({
+    minHue: skipRed, maxAlpha: 90
+  })
+
+  console.log('randomColor1', randomColor1)
+  console.log('randomColor2', randomColor2)
 }
 
 function getTestPoints(){
