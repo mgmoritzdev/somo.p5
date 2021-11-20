@@ -1,10 +1,20 @@
 class Sector {
-  constructor(index) {
+  constructor(index, analyser) {
     this.index = index
-    this.color = new Array(3).fill(0);
+    this.newColor = new Array(3).fill(0);
     this.previousColor = new Array(3).fill(0);
+    this.hasChanged = false
     this.center = this.calculateSectorCenter(index)
     this.accumulation = 0
+    this.threshold = SomoConfig.pixelChangeThreshold
+    this.analyser = analyser
+  }
+
+  analyse(points) {
+    this.update()
+    if(this.analyser) {
+      const { compare } = this.analyser
+    }
   }
 
   calculateSectorCenter (index) {
@@ -28,8 +38,15 @@ class Sector {
     rect(this.center.x, this.center.y, 4, 5)
   }
 
-  static initialize() {
-    return [...Array(ComputedConfig.nSectors).keys()]
-      .map(s => new Sector(s))
+  update(pixels) {
+    this.previousColor = this.newColor.slice()
+    this.newColor = pixels.slice()
+  }
+
+  compare() {
+    const {newColor, previousColor, threshold } = this
+    return (abs(newColor[0] - previousColor[0]) > threshold) &&
+      (abs(newColor[1] - previousColor[1]) > threshold) &&
+      (abs(newColor[2] - previousColor[2]) > threshold)
   }
 }

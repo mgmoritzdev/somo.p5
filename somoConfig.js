@@ -3,6 +3,7 @@ class SomoConfig {
   static height = 480
   static captureWidth = 160
   static captureHeight = 96
+  static pixelChangeThreshold = 50
 }
 
 class ComputedConfig {

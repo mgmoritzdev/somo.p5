@@ -8,6 +8,12 @@ class VideoInput {
     this.capture.hide()
   }
 
+  loadPixels() {
+    this.capture.loadPixels()
+    this.capture.pixels
+    return this.capture.pixels
+  }
+
   draw() {
     image(this.capture, 0, 0, SomoConfig.width, SomoConfig.height);
   }
