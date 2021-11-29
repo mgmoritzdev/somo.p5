@@ -14,6 +14,7 @@ function setup() {
 function draw() {
   const pixels = videoInput.loadPixels()
   videoInput.draw()
+  sectorGroup.analyse(pixels)
   sectorGroup.draw()
 
   // TODO: sample points, remove me

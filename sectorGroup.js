@@ -14,6 +14,10 @@ class SectorGroup {
       .map(s => new Sector(s))
   }
 
+  analyse(pixels) {
+    this.analyser.analyse(this.sectors, pixels)
+  }
+
   draw() {
     this.updateRandomColors()
     this.sectors.forEach(s => s.drawBorder())

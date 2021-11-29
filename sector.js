@@ -1,8 +1,8 @@
 class Sector {
   constructor(index, analyser) {
     this.index = index
-    this.newColor = new Array(3).fill(0);
-    this.previousColor = new Array(3).fill(0);
+    this.newColor = new Array(4).fill(0);
+    this.previousColor = new Array(4).fill(0);
     this.hasChanged = false
     this.center = this.calculateSectorCenter(index)
     this.accumulation = 0
@@ -10,6 +10,7 @@ class Sector {
     this.analyser = analyser
   }
 
+  // TODO: obsolete?
   analyse(points) {
     this.update()
     if(this.analyser) {
@@ -17,6 +18,7 @@ class Sector {
     }
   }
 
+  // TODO: obsolete?
   calculateSectorCenter (index) {
     const centerX = ComputedConfig.sectorWidth/2
           + (index % SomoConfig.captureWidth)
@@ -41,6 +43,7 @@ class Sector {
   update(pixels) {
     this.previousColor = this.newColor.slice()
     this.newColor = pixels.slice()
+    this.hasChanged = this.compare()
   }
 
   compare() {
